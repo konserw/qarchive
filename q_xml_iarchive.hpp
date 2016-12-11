@@ -1,10 +1,19 @@
 #ifndef Q_XML_IARCHIVE_HPP
 #define Q_XML_IARCHIVE_HPP
+
 #include <QList>
+#include <list>
+#include <QString>
+#include <string>
+
+#define BOOST_ARCHIVE_SOURCE
+#include <boost/archive/detail/register_archive.hpp>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/impl/basic_xml_iarchive.ipp>
 #include <boost/archive/impl/xml_iarchive_impl.ipp>
+
 using namespace boost::archive;
+using boost::serialization::nvp;
 
 class q_xml_iarchive :
 public xml_iarchive_impl<q_xml_iarchive>
@@ -17,7 +26,7 @@ public:
         base_t::load_override(t);
     }
     // catch QString
-    void load_override(const boost::serialization::nvp<QString> & t){
+    void load_override(const nvp<QString> & t){
         this->This()->load_start(t.name());
         std::string str;
         this->detail_common_iarchive::load_override(str);
@@ -26,27 +35,18 @@ public:
     }
     // catch QList
     template<class T>
-    void load_override(const boost::serialization::nvp<QList<T> > & t){
+    void load_override(const nvp<QList<T> > & t){
         this->This()->load_start(t.name());
         std::list<T> list;
         this->detail_common_iarchive::load_override(list);
         t.value() = QList<T>::fromStdList(list);
         this->This()->load_end(t.name());
     }
-    /*
-    template<class T>
-    void load_override(const boost::serialization::nvp<QList<T*> > & t){
-        this->This()->load_start(t.name());
-        std::list<T*> list;
-        this->detail_common_iarchive::load_override(list);
-        t.value() = QList<T*>::fromStdList(list);
-        this->This()->load_end(t.name());
-    }
-*/
+
     //stuff needed by boost
     q_xml_iarchive(std::istream & is, unsigned int flags = 0) : base_t(is, flags){}
     ~q_xml_iarchive(){}
-    friend class boost::archive::detail::interface_iarchive<q_xml_iarchive>;
+    friend class detail::interface_iarchive<q_xml_iarchive>;
     friend class detail::common_iarchive<q_xml_iarchive>;
     friend class basic_xml_iarchive<q_xml_iarchive>;
     friend class save_access;
