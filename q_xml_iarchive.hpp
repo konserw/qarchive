@@ -1,6 +1,6 @@
 #ifndef Q_XML_IARCHIVE_HPP
 #define Q_XML_IARCHIVE_HPP
-
+#include <QList>
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/impl/basic_xml_iarchive.ipp>
 #include <boost/archive/impl/xml_iarchive_impl.ipp>
@@ -24,7 +24,25 @@ public:
         t.value() = QString::fromStdString(str);
         this->This()->load_end(t.name());
     }
-
+    // catch QList
+    template<class T>
+    void load_override(const boost::serialization::nvp<QList<T> > & t){
+        this->This()->load_start(t.name());
+        std::list<T> list;
+        this->detail_common_iarchive::load_override(list);
+        t.value() = QList<T>::fromStdList(list);
+        this->This()->load_end(t.name());
+    }
+    /*
+    template<class T>
+    void load_override(const boost::serialization::nvp<QList<T*> > & t){
+        this->This()->load_start(t.name());
+        std::list<T*> list;
+        this->detail_common_iarchive::load_override(list);
+        t.value() = QList<T*>::fromStdList(list);
+        this->This()->load_end(t.name());
+    }
+*/
     //stuff needed by boost
     q_xml_iarchive(std::istream & is, unsigned int flags = 0) : base_t(is, flags){}
     ~q_xml_iarchive(){}

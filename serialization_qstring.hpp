@@ -13,7 +13,6 @@ inline void serialize( Archive& ar, QString& s, const unsigned int /*file_versio
     ar & make_nvp(NULL, s);
 }
 
-
 } // namespace serialization
 } // namespace boost
 

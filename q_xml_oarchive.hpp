@@ -1,6 +1,6 @@
 #ifndef Q_XML_OARCHIVE_HPP
 #define Q_XML_OARCHIVE_HPP
-
+#include <QList>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/archive/impl/basic_xml_oarchive.ipp>
 #include <boost/archive/impl/xml_oarchive_impl.ipp>
@@ -20,6 +20,12 @@ public:
     void save_override(const boost::serialization::nvp<QString> & t){
         std::string str = t.value().toStdString();
         base_t::save_override(boost::serialization::make_nvp(t.name(), str));
+    }
+    // catch QList
+    template<class T>
+    void save_override(const boost::serialization::nvp<QList<T> > & t){
+        std::list<T> list = t.value().toStdList();
+        base_t::save_override(boost::serialization::make_nvp(t.name(), list));
     }
 
     //stuff needed by boost

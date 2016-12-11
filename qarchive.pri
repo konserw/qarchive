@@ -12,4 +12,5 @@ HEADERS +=			\
     $$PWD/qarchive.hpp		\
     $$PWD/q_xml_iarchive.hpp	\
     $$PWD/q_xml_oarchive.hpp	\
-    $$PWD/serialization_qstring.hpp
+    $$PWD/serialization_qstring.hpp \
+    $$PWD/serialization_qlist.hpp
