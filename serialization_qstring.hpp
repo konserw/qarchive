@@ -11,7 +11,7 @@
 #ifndef QSTRING_SERIALIZATION_H
 #define QSTRING_SERIALIZATION_H
 #include <QDebug>
-#include "qarchive/qarchive.h"
+#include "qarchive.hpp"
 /*
 #include <QString>
 #include <string>
