@@ -22,6 +22,14 @@ inline void serialize( Archive& ar, QList<T>& list, const unsigned int /*file_ve
     ar & make_nvp(NULL, list);
 }
 
+template<class Archive>
+inline void serialize( Archive& ar, QStringList& stringList, const unsigned int /*file_version*/ )
+{
+    QList<QString> list = stringList;
+    ar & make_nvp(NULL, list);
+    stringList = list;
+}
+
 } // namespace serialization
 } // namespace boost
 
