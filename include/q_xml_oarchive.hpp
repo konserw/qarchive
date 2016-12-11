@@ -6,7 +6,6 @@
 #include <QString>
 #include <string>
 
-#define BOOST_ARCHIVE_SOURCE
 #include <boost/archive/detail/register_archive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 

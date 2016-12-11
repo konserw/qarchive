@@ -8,10 +8,8 @@ win32 {
     LIBS += "-L$(BOOST_LIBRARYDIR)"
 }
 
-HEADERS +=			\
-    $$PWD/qarchive.hpp		\
-    $$PWD/q_xml_iarchive.hpp	\
-    $$PWD/q_xml_oarchive.hpp
+HEADERS += \
+    $$PWD/include/qarchive.hpp		\
+    $$PWD/include/q_xml_iarchive.hpp	\
+    $$PWD/include/q_xml_oarchive.hpp
 
-SOURCES += \
-    $$PWD/qarchive.cpp

@@ -1,7 +1,8 @@
-TARGET = qarchive
-
-TEMPLATE = lib
-CONFIG += staticlib
-QT = core
+TEMPLATE = subdirs
+SUBDIRS +=	\
+    libqarchive \
+    test
 
 include(qarchive.pri)
+
+test.depends = libqarchive
