@@ -2,10 +2,13 @@
 #define Q_XML_IARCHIVE_HPP
 
 #define BOOST_ARCHIVE_SOURCE
-#include <boost/archive/detail/register_archive.hpp>
-//#include <boost/archive/basic_xml_iarchive.hpp>
+#include <boost/archive/basic_xml_iarchive.hpp>
 #include <boost/archive/impl/basic_xml_iarchive.ipp>
 #include <boost/archive/impl/xml_iarchive_impl.ipp>
+
+#include <boost/archive/detail/register_archive.hpp>
+
+using namespace boost::archive;
 
 class q_xml_iarchive :
 public xml_iarchive_impl<q_xml_iarchive>
