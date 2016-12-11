@@ -15,13 +15,11 @@
 #include <boost/archive/xml_archive_exception.hpp>
 #include <boost/archive/basic_xml_archive.hpp>
 
-#include <boost/archive/impl/xml_iarchive_impl.ipp>
 #include <boost/archive/impl/basic_xml_grammar.hpp>
 #include <boost/archive/impl/archive_serializer_map.ipp>
 
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/string.hpp>
-#include <boost/archive/detail/register_archive.hpp>
 #include <boost/archive/detail/oserializer.hpp>
 
 
