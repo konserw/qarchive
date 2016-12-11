@@ -9,8 +9,6 @@
 #define BOOST_ARCHIVE_SOURCE
 #include <boost/archive/detail/register_archive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
-#include <boost/archive/impl/basic_xml_oarchive.ipp>
-#include <boost/archive/impl/xml_oarchive_impl.ipp>
 
 using namespace boost::archive;
 using boost::serialization::make_nvp;

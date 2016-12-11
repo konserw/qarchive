@@ -12,3 +12,6 @@ HEADERS +=			\
     $$PWD/qarchive.hpp		\
     $$PWD/q_xml_iarchive.hpp	\
     $$PWD/q_xml_oarchive.hpp
+
+SOURCES += \
+    $$PWD/qarchive.cpp
