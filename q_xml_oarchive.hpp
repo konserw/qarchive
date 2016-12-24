@@ -48,7 +48,7 @@ public:
 #if ((BOOST_VERSION / 100) % 1000) > 58
     void save_override(const nvp<QString> & t)
 #else
-    void save_override(const nvp<QString> & t, BOOST_PFTO int)
+    void save_override(const nvp<QString> & t, BOOST_PFTO int pfto)
 #endif
     {
         std::string str = t.value().toStdString();
@@ -64,7 +64,7 @@ public:
 #if ((BOOST_VERSION / 100) % 1000) > 58
     void save_override(const nvp<QList<T> > & t)
 #else
-    void save_override(const nvp<QList<T> > & t, BOOST_PFTO int)
+    void save_override(const nvp<QList<T> > & t, BOOST_PFTO int pfto)
 #endif
     {
         std::list<T> list = t.value().toStdList();

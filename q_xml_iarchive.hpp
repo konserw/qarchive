@@ -47,7 +47,7 @@ public:
 #if ((BOOST_VERSION / 100) % 1000) > 58
     void load_override(const nvp<QString> & t)
 #else
-    void load_override(const nvp<QString> & t, BOOST_PFTO int)
+    void load_override(const nvp<QString> & t, BOOST_PFTO int pfto)
 #endif
     {
         this->This()->load_start(t.name());
