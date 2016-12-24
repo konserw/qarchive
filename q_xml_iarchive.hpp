@@ -39,7 +39,12 @@ public xml_iarchive_impl<q_xml_iarchive>
 public:
     // pass on most types to normal handling in the base class xml_oarchive
     template<class T>
-    void load_override(T & t){
+#if ((BOOST_VERSION / 100) % 1000) > 58
+    void load_override(T & t)
+#else
+    void load_override(T & t, BOOST_PFTO int pfto)
+#endif
+    {
         base_t::load_override(t);
     }
 
