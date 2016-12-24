@@ -9,6 +9,7 @@
 #define BOOST_ARCHIVE_SOURCE
 #include <boost/archive/detail/register_archive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
+#include <boost/version.hpp>
 
 using namespace boost::archive;
 using boost::serialization::make_nvp;
@@ -24,14 +25,26 @@ public:
     void save_override(T & t){
         base_t::save_override(t);
     }
+
     // catch QString
-    void save_override(const nvp<QString> & t){
+#if ((BOOST_VERSION / 100) % 1000) > 58
+    void save_override(const nvp<QString> & t)
+#else
+    void save_override(const nvp<QString> & t, BOOST_PFTO int)
+#endif
+    {
         std::string str = t.value().toStdString();
         base_t::save_override(make_nvp(t.name(), str));
     }
+
     // catch QList
     template<class T>
-    void save_override(const nvp<QList<T> > & t){
+#if ((BOOST_VERSION / 100) % 1000) > 58
+    void save_override(const nvp<QList<T> > & t)
+#else
+    void save_override(const nvp<QList<T> > & t, BOOST_PFTO int)
+#endif
+    {
         std::list<T> list = t.value().toStdList();
         base_t::save_override(make_nvp(t.name(), list));
     }
