@@ -91,7 +91,7 @@ public:
     friend class detail::interface_iarchive<q_xml_iarchive>;
     friend class detail::common_iarchive<q_xml_iarchive>;
     friend class basic_xml_iarchive<q_xml_iarchive>;
-    friend class save_access;
+//    friend class save_access;
 };
 
 // required by export

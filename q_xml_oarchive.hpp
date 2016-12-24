@@ -86,7 +86,7 @@ public:
     friend class detail::interface_oarchive<q_xml_oarchive>;
     friend class detail::common_oarchive<q_xml_oarchive>;
     friend class basic_xml_oarchive<q_xml_oarchive>;
-    friend class save_access;
+//    friend class save_access;
 };
 
 // required by export
