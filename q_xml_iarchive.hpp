@@ -44,7 +44,7 @@ public:
         base_t::load_override(t);
 #else
     void load_override(T & t, BOOST_PFTO int pfto){
-        base_t::save_override(t, pfto);
+        base_t::load_override(t, pfto);
 #endif
     }
 
