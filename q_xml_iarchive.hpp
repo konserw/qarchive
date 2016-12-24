@@ -52,7 +52,11 @@ public:
     {
         this->This()->load_start(t.name());
         std::string str;
+#if ((BOOST_VERSION / 100) % 1000) > 58
         this->detail_common_iarchive::load_override(str);
+#else
+        this->detail_common_iarchive::load_override(str, pfto);
+#endif
         t.value() = QString::fromStdString(str);
         this->This()->load_end(t.name());
     }
@@ -62,12 +66,16 @@ public:
 #if ((BOOST_VERSION / 100) % 1000) > 58
     void load_override(const nvp<QList<T> > & t)
 #else
-    void load_override(const nvp<QList<T> > & t, BOOST_PFTO int)
+    void load_override(const nvp<QList<T> > & t, BOOST_PFTO int pfto)
 #endif
     {
         this->This()->load_start(t.name());
         std::list<T> list;
+#if ((BOOST_VERSION / 100) % 1000) > 58
         this->detail_common_iarchive::load_override(list);
+#else
+        this->detail_common_iarchive::load_override(list, pfto);
+#endif
         t.value() = QList<T>::fromStdList(list);
         this->This()->load_end(t.name());
     }

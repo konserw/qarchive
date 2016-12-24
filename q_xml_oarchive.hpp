@@ -52,7 +52,11 @@ public:
 #endif
     {
         std::string str = t.value().toStdString();
+#if ((BOOST_VERSION / 100) % 1000) > 58
         base_t::save_override(make_nvp(t.name(), str));
+#else
+        base_t::save_override(make_nvp(t.name(), str), pfto);
+#endif
     }
 
     // catch QList
@@ -64,7 +68,11 @@ public:
 #endif
     {
         std::list<T> list = t.value().toStdList();
+#if ((BOOST_VERSION / 100) % 1000) > 58
         base_t::save_override(make_nvp(t.name(), list));
+#else
+        base_t::save_override(make_nvp(t.name(), list), pfto);
+#endif
     }
 
     //stuff needed by boost
