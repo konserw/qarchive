@@ -41,12 +41,12 @@ public:
     // pass on most types to normal handling in the base class xml_oarchive
     template<class T>
 #if ((BOOST_VERSION / 100) % 1000) > 58
-    void save_override(T & t)
-#else
-    void save_override(T & t, BOOST_PFTO int pfto)
-#endif
-    {
+    void save_override(T & t) {
         base_t::save_override(t);
+#else
+    void save_override(T & t, BOOST_PFTO int pfto){
+        base_t::save_override(t, pfto);
+#endif
     }
 
     // catch QString
